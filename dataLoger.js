@@ -21,11 +21,12 @@ function askQuestion(query) {
         lastName,
         age
       };
-      console.log("Dane użytkownika:", userData);
+
+    console.log("Dane użytkownika:", userData);
+    await fs.writeFile('userData.json', JSON.stringify(userData, null, 2));
+    console.log("Dane zostały zapisane do pliku");
+    
       rl.close();
-    } catch (error) {
-      console.error("Wystąpił błąd:", error);
-      rl.close();
-    }
+    
   }
 main();
