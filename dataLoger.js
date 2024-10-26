@@ -27,6 +27,9 @@ function askQuestion(query) {
     console.log("Dane zostały zapisane do pliku");
     
       rl.close();
-    
+    } catch (error) {
+        console.error("Wystąpił błąd:", error);
+        rl.close();
+      }
   }
 main();
