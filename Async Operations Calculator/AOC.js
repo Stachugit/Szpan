@@ -47,6 +47,16 @@ async function main() {
         const num2 = parseFloat(await getUserInput('Wpisz drugi numer: '));
         const operationType = await getUserInput('Wybierz operację (dodawanie/mnozenie): ');
         const method = await getUserInput('Wpisz metodę (callback/promise): ');
+
+        let operation;
+        if (operationType === 'dodawanie') {
+            operation = add;
+        } else if (operationType === 'mnozenie') {
+            operation = multiply;
+        } else {
+            throw new Error('nieznana operacja');
+        }
+
     } catch (error) {
         console.error('Error:', error.message);
         rl.close();
