@@ -41,3 +41,18 @@ async function displayData() {
     }
 }
 
+async function main() {
+    const choice = await promptUser('Czy chcesz dodać nowy obiekt czy wyświetlić dane? (dodaj/wyświetl): ');
+
+    if (choice === 'dodaj') {
+        await addObject();
+    } else if (choice === 'wyswietl') {
+        await displayData();
+    } else {
+        console.log('Nieprawidłowy wybór');
+    }
+
+    rl.close();
+}
+
+main();
