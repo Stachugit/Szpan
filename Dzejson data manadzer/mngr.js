@@ -28,3 +28,16 @@ async function addObject() {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     console.log('Dane dodane pomyślnie');
 }
+
+async function displayData() {
+    const filePath = await promptUser('Podaj sdciezke do Dżejsona ');
+
+    if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath);
+        const data = JSON.parse(fileContent);
+        console.log(data);
+    } else {
+        console.log('Plik nie istnieje.');
+    }
+}
+
