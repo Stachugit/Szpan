@@ -16,3 +16,14 @@ function add(a, b) {
 function multiply(a, b) {
     return a * b;
 }
+
+function asyncOperationCallback(a, b, operation, callback) {
+    setTimeout(() => {
+        try {
+            const result = operation(a, b);
+            callback(null, result);
+        } catch (error) {
+            callback(error);
+        }
+    }, 1000);
+}
