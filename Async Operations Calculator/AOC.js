@@ -46,7 +46,7 @@ async function main() {
         const num1 = parseFloat(await getUserInput('Wpisz pierwszy numer: '));
         const num2 = parseFloat(await getUserInput('Wpisz drugi numer: '));
         const operationType = await getUserInput('Wybierz operację (dodawanie/mnozenie): ');
-        const method = await getUserInput('Wpisz metodę (callback/promise): ');
+        const method = await getUserInput('Wybierz metodę (callback/promise): ');
 
         let operation;
         if (operationType === 'dodawanie') {
@@ -55,6 +55,28 @@ async function main() {
             operation = multiply;
         } else {
             throw new Error('nieznana operacja');
+        }
+
+        if (method === 'callback') {
+            asyncOperationCallback(num1, num2, operation, (error, result) => {
+                if (error) {
+                    console.error('Error:', error.message);
+                } else {
+                    console.log('Rezultat:', result);
+                }
+                rl.close();
+            });
+        } else if (method === 'promise') {
+            asyncOperationPromise(num1, num2, operation)
+                .then(result => {
+                    console.log('Rezultat:', result);
+                })
+                .catch(error => {
+                    console.error('Error:', error.message);
+                })
+                .finally(() => rl.close());
+        } else {
+            throw new Error('Nieznana metoda');
         }
 
     } catch (error) {
