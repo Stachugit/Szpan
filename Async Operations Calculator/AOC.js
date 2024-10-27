@@ -8,3 +8,11 @@ const rl = readline.createInterface({
 function getUserInput(question) {
     return new Promise((resolve) => rl.question(question, resolve));
 }
+
+function add(a, b) {
+    return a + b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
