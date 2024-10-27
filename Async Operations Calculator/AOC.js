@@ -40,3 +40,17 @@ function asyncOperationPromise(a, b, operation) {
         }, 1000);
     });
 }
+
+async function main() {
+    try {
+        const num1 = parseFloat(await getUserInput('Wpisz pierwszy numer: '));
+        const num2 = parseFloat(await getUserInput('Wpisz drugi numer: '));
+        const operationType = await getUserInput('Wybierz operację (dodawanie/mnozenie): ');
+        const method = await getUserInput('Wpisz metodę (callback/promise): ');
+    } catch (error) {
+        console.error('Error:', error.message);
+        rl.close();
+    }
+}
+
+main();
