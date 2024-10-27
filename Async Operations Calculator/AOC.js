@@ -27,3 +27,16 @@ function asyncOperationCallback(a, b, operation, callback) {
         }
     }, 1000);
 }
+
+function asyncOperationPromise(a, b, operation) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            try {
+                const result = operation(a, b);
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        }, 1000);
+    });
+}
