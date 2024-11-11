@@ -1,22 +1,27 @@
-const readline = require('readline');
+const readline = require('readline'); // Importowanie modułu readline do interakcji z użytkownikiem
 
+// Tworzenie interfejsu readline do odczytu danych z konsoli
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
+// Funkcja do zadawania pytań użytkownikowi
 function getUserInput(question) {
     return new Promise((resolve) => rl.question(question, resolve));
 }
 
+// Funkcja do dodawania dwóch liczb
 function add(a, b) {
     return a + b;
 }
 
+// Funkcja do mnożenia dwóch liczb
 function multiply(a, b) {
     return a * b;
 }
 
+// Asynchroniczna operacja z użyciem callback
 function asyncOperationCallback(a, b, operation, callback) {
     setTimeout(() => {
         try {
@@ -28,6 +33,7 @@ function asyncOperationCallback(a, b, operation, callback) {
     }, 1000);
 }
 
+// Asynchroniczna operacja z użyciem Promise
 function asyncOperationPromise(a, b, operation) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -41,13 +47,16 @@ function asyncOperationPromise(a, b, operation) {
     });
 }
 
+// Główna funkcja programu
 async function main() {
     try {
+        // Pobieranie danych od użytkownika
         const num1 = parseFloat(await getUserInput('Wpisz pierwszy numer: '));
         const num2 = parseFloat(await getUserInput('Wpisz drugi numer: '));
         const operationType = await getUserInput('Wybierz operację (dodawanie/mnozenie): ');
         const method = await getUserInput('Wybierz metodę (callback/promise): ');
 
+        // Wybór operacji na podstawie danych użytkownika
         let operation;
         if (operationType === 'dodawanie') {
             operation = add;
@@ -57,6 +66,7 @@ async function main() {
             throw new Error('nieznana operacja');
         }
 
+        // Wykonanie operacji z użyciem wybranej metody
         if (method === 'callback') {
             asyncOperationCallback(num1, num2, operation, (error, result) => {
                 if (error) {
@@ -85,4 +95,4 @@ async function main() {
     }
 }
 
-main();
+main(); // Wywołanie głównej funkcji programu
